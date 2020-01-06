@@ -15,7 +15,6 @@ import java.util.List;
 public class FrameActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     boolean isGrand = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +61,5 @@ public class FrameActivity extends AppCompatActivity implements EasyPermissions.
                 .setNegativeButton("不行")
                 .build()
                 .show();
-
     }
 }
