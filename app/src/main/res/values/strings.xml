@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AutoPermission</string>
+    <string name="normal_style">普通方式申请</string>
+    <string name="frame_style">使用框架申请</string>
+    <string name="easy_permission">EasyPermission</string>
+</resources>
