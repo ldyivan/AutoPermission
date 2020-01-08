@@ -18,6 +18,19 @@ import androidx.core.content.ContextCompat;
 
 /**
  * 权限申请步骤：
+ * 1、检查有无权限
+ *         有权限-> doSomething
+ *         无权限->申请权限
+ *
+ * 2、申请权限(走权限回调)
+ *
+ *        用户同意->doSomething
+ *        用户拒绝->展示跳转设置界面对话框
+ *
+ * 3、跳转设置对话框
+ *
+ *        同意跳转->跳转特定的权限打开界面
+ *        用户拒绝->Toast提示没权限，功能不能正常使用
  */
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 0x11; // 请求权限请求码
@@ -39,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public void normal(View view) {
         isAllGrant = checkIsAllPermissionGranted(permissions, this);
         if (isAllGrant) {
+            // 已有权限 ->做事情
             Toast.makeText(this, "检测到已有权限！", Toast.LENGTH_SHORT).show();
             doWork();
 
@@ -64,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * @function 检查是否所有的权限都授权
      */
     private boolean checkIsAllPermissionGranted(String[] permissions, Context context) {
+        // 遍历检测权限
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 return false;
@@ -87,10 +102,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        if (isAllGrant) {
+        if (isAllGrant) {// 同意授权->做事情
             Toast.makeText(MainActivity.this, "授权成功", Toast.LENGTH_SHORT).show();
             doWork();
         } else {
+            // 拒绝授权->开弹窗跳询问是否跳设置-权限管理界面
             AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setMessage("应用需要您的通讯录和存储权限，请到设置-权限管理中授权。")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {

@@ -27,4 +27,5 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.anggrayudi:android-hidden-api:28.1'
 }
